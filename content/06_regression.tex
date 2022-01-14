@@ -1,10 +1,10 @@
-\section{Linear Regression}
+\section{Linear Regression (Model)}
 a simple method to analyse data \\
 
 \begin{itemize}
     \item Only considers a linear relationship between input and output
-    \item In the simplest case, $x$ and $y$ are scalars and the linear model therefore has only two free parameters
-    \item The goal is to identify $a$ (slope) and $b$ (intercept) for which the linear model best explains the data
+    \item In the simplest case, $x$ (Feature) and $y$ are scalars and the linear model therefore has only \textcolor{blue}{two free parameters}
+    \item The goal is to identify $a$ (slope/Steigung) and $b$ (intercept/offset) for which the linear model best explains the data
 \end{itemize}
 \begin{center}
     $\hat{y_i} = ax_i + b$
@@ -12,8 +12,8 @@ a simple method to analyse data \\
 
 Other examples
 
-Squared: $\hat{y_i} = w_2 * x_i^2 + w_1 * x_i + w_0$\\
-Cubic: $\hat{y_i} = w_3 * x_i^3 + w_2 * x_i^2 + w_1 * x_i + w_0$\\
+\textcolor{blue}{Squared} $\hat{y_i} = w_2 * x_i^2 + w_1 * x_i + w_0$\\
+\textcolor{blue}{Cubic} $\hat{y_i} = w_3 * x_i^3 + w_2 * x_i^2 + w_1 * x_i + w_0$\\
 
 \textbf{Applications}
 \begin{itemize}
@@ -22,7 +22,8 @@ Cubic: $\hat{y_i} = w_3 * x_i^3 + w_2 * x_i^2 + w_1 * x_i + w_0$\\
 \end{itemize}
 
 \subsection{Model}
-In ML, we use the term \textcolor{blue}{model} for any mathematical function that explains the data\\
+\textcolor{blue}{model} any mathematical function that explains the data\\
+
 \begin{center}
     $y_i \approx f(x_i)$\\
     $y_i = f(x_i) + \epsilon_i$\\
@@ -35,17 +36,26 @@ Instead of approximating $y_i$, we calculate an \textcolor{blue}{estimate} $\hat
 
 
 
-\subsection{Mean Squared Error (MSE)}
+\subsection{Mean Squared Error (MSE) - Loss}
 \begin{itemize}
     \item Loss we want to minimize
     \item Usually divided by 2
+    \item Parameters sind die Daten (X und Y) sowie die Parameters des Models ($a$ und $b$)
+    \item $MSE = f (X, Y, a, b)$
 \end{itemize}
 \begin{center}
-    $\hat{y_i} = ax_i + b$\\
-    $e_i = y_i - \hat{y_i}$ \\
-    The difference $e_i$, called residual\\
-    $MSE = \frac{1}{2N} * \displaystyle\sum_{i = 1}^{N} e_i^2$\\
-    $MSE = \frac{1}{2N} * \displaystyle\sum_{i = 1}^{N} (y_i - \hat{y_i})^2$\\
+    $\hat{y} =$ Schätzung von $y$
+
+    $\hat{y_i} = ax_i + b$
+
+    $e_i =$ difference/\textcolor{blue}{residual} (Restfehler)
+
+    $e_i = y_i - \hat{y_i}$
+
+    $MSE = \frac{1}{2N} * \displaystyle\sum_{i = 1}^{N} e_i^2$
+
+    $MSE = \frac{1}{2N} * \displaystyle\sum_{i = 1}^{N} (y_i - \hat{y_i})^2$
+
     $MSE = \frac{1}{2N} * \large\displaystyle\sum_{i = 1}^{N}({y_i} - (a*x_i + b))^2$
 \end{center}
 

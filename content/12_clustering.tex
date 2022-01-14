@@ -1,11 +1,13 @@
 \section{Clustering}
+\textcolor{blue}{k} Anzahl Clusters die es geben darf (Hyperparameter)
+
 \subsection{Unsupervised Learning}
 \begin{itemize}
     \item We are given Data (features, x) wihout labels (y)
     \item It learns something through the structure of the data
     \item \textbf{The goal} of unsupervised learning is to self-discover patterns from the data
 \end{itemize}
-
+\vspace{10pt}
 \textbf{Clusters}
 \begin{itemize}
     \item Data points which have shared properties
@@ -13,6 +15,7 @@
     \item Similar Data Points are close together
     \item Group $n$ data points into $k_c$ number of clusters
 \end{itemize}
+\vspace{10pt}
 \textbf{Applications}
 \begin{itemize}
     \item Social Network Analysis
@@ -21,18 +24,31 @@
     \item Recommendation systems
 \end{itemize}
 \subsection{Naive K-means}
-\includegraphics[width=\linewidth]{k-means.png}
+%\includegraphics[width=\linewidth]{k-means.png}
 
-\includegraphics[width=\linewidth]{clusters-formal-maths.png}
+\begin{enumerate}
+    \item Gehen wir davon aus wir kennen die Anzahl Clusters $k$
+    \item Initialisiere $k$ Cluster Center s(aka means, centroids)
+    \item Assignment
+        \begin{enumerate}
+            \item Finde die \textcolor{blue}{squared Euclidean Distance} $d_{ik} = (x_i - C_k)^2$ zwischen Center und \textcolor{blue}{allen Datenpunkten}
+            \item Weise jeden Datenpunkt dem \textcolor{blue}{nächsten} Center zu
+        \end{enumerate}
+    \item Update: Jedes Cluster hat nun möglicherweise ein neues Center. Update des Center aller Clusters $C_k = \frac{1}{size(C_k)} \sum_{x_i \in cluster k} x_i$
+    \item Wenn Stopping Kriterium, Fertig
+    \item Sonst gehen zu Assignment
+\end{enumerate}
+\vspace{10pt}
+%\includegraphics[width=\linewidth]{clusters-formal-maths.png} \\
 
 \textbf{Stopping Criterion}
 \begin{itemize}
     \item When centres don't change (time consuming)
     \item The datapoints assigned to specific cluster remains the same (takes too much time)
     \item The distance of datapoints from their centres $>=$ treshold we have set
-    \item Fixed number of iterations have reached (choose wisely)
+    \item Fixed number of iterations have reached
 \end{itemize}
-
+\vspace{10pt}
 \textbf{Initialization}
 \begin{itemize}
     \item Performance depends on the random initialization
@@ -41,7 +57,7 @@
     \item If centres are very close, it takes a lot of iterations to converge
     \item Initialize randomly, run multiple times
 \end{itemize}
-
+\vspace{10pt}
 \textbf{Standardization of data}
 \begin{itemize}
     \item Features with large values may dominate the distance value
@@ -60,6 +76,7 @@
 \begin{itemize}
     \item Number of iterations before stopping
 \end{itemize}
+\vspace{10pt}
 \textbf{n\_init}
 \begin{itemize}
     \item Number of time the k-means algorithm will be run with different centroid seeds
@@ -69,6 +86,7 @@
 \begin{itemize}
     \item Make clusters so that for each cluster the distance of each cluster member from its center is minimizes
 \end{itemize}
+\vspace{10pt}
 \textbf{Inertia or within-cluster sum-of-squares (WCSS)}
 \begin{itemize}
     \item Sum of squared distances of samples (each point) to their closest center
@@ -81,13 +99,14 @@
 \begin{minipage}[t]{0.5\linewidth}
     \includegraphics[width=\linewidth]{wcss-table.png}
 \end{minipage}
-
-
+\vspace{10pt}
 \textbf{Silhouette Score}
 \begin{itemize}
     \item How far the datapoints in one cluster are from the datapoints in another cluster
     \item Silhouette Score of a point: $\frac{b-a}{max(a,b)}$
-    \item a: average intra-cluster distance (distance between each point within)
-    \item b: average inter-cluster distance (distance between a cluster and its nearest neighbour)
+    \begin{itemize}
+        \item a: average intra-cluster distance (distance between each point within)
+        \item b: average inter-cluster distance (distance between a cluster and its nearest neighbour)
+    \end{itemize}
 \end{itemize}
 \includegraphics[width=\linewidth]{silhouette-score.png}
